@@ -1,0 +1,54 @@
+@import '../../../styles/variables.scss';
+
+.Button {
+    color: $secondaryColor;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 21.79px;
+}
+
+.outlined {
+    border: 1px solid $inputBorderColor;
+    padding: 8px 16px;
+
+    &:hover {
+        background-color: $secondaryColor;
+        color: $primaryColor;
+        border: 1px solid $secondaryColor;
+        transition: .2s;
+    }
+}
+
+.outlined_dark {
+    border: 1px solid $primaryColor;
+    padding: 9px 16px;
+    color: $primaryColor;
+    transition: 0.2s;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+}
+
+.accent {
+    background-color: $accentColor;
+    padding: 13px;
+
+    &:hover {
+        background-color: $accentHoverColor;
+        transition: .2s;
+    }
+}
+
+.size_m {
+    font-size: 16px;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.fullWidth {
+    width: 100%;
+}

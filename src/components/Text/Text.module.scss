@@ -1,0 +1,76 @@
+@import './../../../styles/variables.scss';
+
+.title,
+.text {
+    color: $primaryColor;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+.secondary {
+
+    .text,
+    .title {
+        color: $secondaryColor;
+    }
+}
+
+.error {
+
+    .text,
+    .title {
+        color: $errorColor;
+    }
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.size_s {
+    .title {
+        font-size: 16px;
+        line-height: 21.79px;
+    }
+
+    .text {
+        font-size: 10px;
+        line-height: 11.72px;
+    }
+}
+
+.size_m {
+    .title {
+        font-size: 32px;
+        line-height: 37.5px
+    }
+
+    .text {
+        font-size: clamp(16px, 4vw, 20px);
+        line-height: 23.44px;
+    }
+}
+
+.size_l {
+    .title {
+        font-size: clamp(36px, 5vw, 64px);
+        line-height: 75px;
+
+        @media screen and (max-width: $mobileBreakPoint) {
+            line-height: 42px;
+        }
+    }
+
+    .text {
+        font-size: clamp(20px, 5vw,32px);
+        line-height: 37.5px;
+    }
+}

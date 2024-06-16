@@ -1,0 +1,31 @@
+@import '../../../../../styles/variables.scss';
+
+.TeamList {
+    margin-top: 48px;
+    width: 100%;
+
+    .container {
+        max-width: 1280px;
+        width: 100%;
+    }
+
+    .seeMoreBtn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        margin: 56px 0 69px;
+    }
+
+    @media screen and (max-width: $mobileBreakPoint) {
+        margin-top: 32px;
+
+        .container {
+            justify-content: center;
+        }
+
+        .seeMoreBtn {
+            margin: 32px 0;
+        }
+    }
+}

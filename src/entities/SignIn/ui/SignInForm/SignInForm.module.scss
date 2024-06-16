@@ -1,0 +1,55 @@
+@import './../../../../../styles/variables.scss';
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    .submitBtn {
+        margin-top: 24px;
+    }
+}
+
+.label {
+    line-height: 21.79px;
+    margin-top: 16px;
+}
+
+.input {
+    padding: 12px 8px;
+    border-radius: 8px;
+    background-color: $inputBorderColor;
+    border: none;
+    margin-top: 8px;
+    width: 100%;
+
+
+    &:focus {
+        border: 1px solid $placeholderColor;
+    }
+
+    &::placeholder {
+        color: $placeholderColor;
+        line-height: 16.41px;
+    }
+}
+
+.containerInput {
+    position: relative;
+
+    .passwordEye {
+        position: absolute;
+        top: 17px;
+        right: 10px;
+        height: 24px;
+    }
+}
+
+.error {
+    margin-top: 4px;
+}
+
+.errorInput {
+    border: 1px solid $errorColor;
+}

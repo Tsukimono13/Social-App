@@ -1,0 +1,26 @@
+.TeamListItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 305px;
+    gap: 16px;
+
+    &:hover {
+        transform: scale(1.01);
+        border: 1px solid rgba(0, 0, 0, 1);
+    }
+
+    button {
+        margin-left: auto;
+    }
+}
+
+.photo {
+    border-radius: 50%;
+    width: 124px;
+    height: 124px;
+    object-fit: cover;
+}
