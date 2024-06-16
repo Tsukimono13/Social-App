@@ -6,14 +6,16 @@ import { AppLink } from '@/components/AppLink';
 import PhoneIcon from '@assets/icons/phone.svg';
 import EmailIcon from '@assets/icons/email.svg';
 import { memo } from 'react';
+import { User } from '../../model/types/user';
 
 interface TeamMemberDescriptionProps {
     className?: string;
+    user: User;
 }
 
 export const TeamMemberDescription = memo(
     (props: TeamMemberDescriptionProps) => {
-        const { className } = props;
+        const { className, user } = props;
         return (
             <HStack
                 align="start"

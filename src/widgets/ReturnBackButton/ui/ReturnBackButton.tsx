@@ -11,10 +11,17 @@ interface ReturnBackButtonProps {
 export const ReturnBackButton = (props: ReturnBackButtonProps) => {
     const { className } = props;
     const isMobile = useIsMobile();
+    // const navigate = useNavigate();
+
+    // const goBackHandler = () => {
+    //     navigate(RoutePath.main); 
+    // };
+
     return (
         <>
             {isMobile ? (
                 <Button
+                
                     theme={ThemeButton.CLEAR}
                     className={classNames(cls.ReturnBackButton, {}, [
                         className,
@@ -24,6 +31,7 @@ export const ReturnBackButton = (props: ReturnBackButtonProps) => {
                 </Button>
             ) : (
                 <Button
+             
                     className={classNames(cls.ReturnBackButton, {}, [
                         className,
                     ])}

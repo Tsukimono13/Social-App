@@ -7,8 +7,15 @@ import cls from './NavbarTeamMemberPage.module.scss';
 import { SignOutButton } from '@/widgets/SignOutButton';
 import { ReturnBackButton } from '@/widgets/ReturnBackButton';
 import { useIsMobile } from '@/shared/hooks/useIsMobile';
+import { User } from '@/entities/Team/model/types/user';
 
-export const NavbarTeamMemberPage = () => {
+interface NavbarTeamMemberPageProps {
+    className?: string;
+    user: User;
+}
+
+export const NavbarTeamMemberPage = (props: NavbarTeamMemberPageProps) => {
+    const { className, user } = props;
     const isMobile = useIsMobile();
 
     return (
@@ -31,7 +38,7 @@ export const NavbarTeamMemberPage = () => {
                     />
                     <VStack gap="16" className={cls.info}>
                         <Text
-                            title="Артур Королёв"
+                            title={user.name}
                             size={TextSize.L}
                             theme={TextTheme.SECONDARY}
                         />
