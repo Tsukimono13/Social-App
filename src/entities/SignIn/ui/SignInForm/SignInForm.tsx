@@ -4,12 +4,16 @@ import { Text, TextSize, TextTheme } from '@/components/Text';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { VStack } from '@/components/Stack';
 import { Button, ThemeButton } from '@/components/Button';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import EyeOffIcon from '@assets/icons/eye-off.svg';
 import EyeOnIcon from '@assets/icons/eye-on.svg';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { signInByUsername } from '../../model/services/signInByUsername';
+import { useSelector } from 'react-redux';
+import { getSignInError, getSignInIsLoading } from '../../model/selectors/signInSelectors';
 
 interface IFormInput {
-    firstName: string;
+    username: string;
     password: string;
     confirmPassword: string;
     email: string;
@@ -19,9 +23,13 @@ interface SignInFormProps {
     className?: string;
 }
 
-export const SignInForm = (props: SignInFormProps) => {
+export const SignInForm = memo((props: SignInFormProps) => {
     const { className } = props;
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useAppDispatch();
+
+    const isLoading = useSelector(getSignInIsLoading)
+    const error = useSelector(getSignInError)
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -34,26 +42,34 @@ export const SignInForm = (props: SignInFormProps) => {
         watch,
     } = useForm<IFormInput>();
 
-    const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<IFormInput> = (data) => {
+        const { username, password } = data;
+        const payload = { username, password };
+
+        dispatch(signInByUsername(payload));
+
+        console.log(payload);
+    };
 
     const password = watch('password', '');
 
     return (
         <VStack className={classNames(cls.SignInForm, {}, [className])}>
             <Text text="Регистрация" />
+            {error && <Text text={error} theme={TextTheme.ERROR} />}
             <form onSubmit={handleSubmit(onSubmit)} className={cls.form}>
                 <label className={cls.label}>Имя</label>
                 <input
                     className={classNames(cls.input, {
-                        [cls.errorInput]: errors.firstName?.message,
+                        [cls.errorInput]: errors.username?.message,
                     })}
                     placeholder="Артур"
                     type="text"
-                    {...register('firstName', { required: 'Имя обязательно' })}
+                    {...register('username', { required: 'Имя обязательно' })}
                 />
-                {errors.firstName && (
+                {errors.username && (
                     <Text
-                        text={errors.firstName.message}
+                        text={errors.username.message}
                         className={cls.error}
                         theme={TextTheme.ERROR}
                         size={TextSize.S}
@@ -154,10 +170,11 @@ export const SignInForm = (props: SignInFormProps) => {
                     type="submit"
                     theme={ThemeButton.ACCENT}
                     className={cls.submitBtn}
+                    disabled={isLoading}
                 >
                     Зарегистрироваться
                 </Button>
             </form>
         </VStack>
     );
-};
+});

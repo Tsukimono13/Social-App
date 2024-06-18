@@ -1,8 +1,7 @@
-import { NotFoundPage } from "@/pages/NotFoundPage";
-import { OurTeamPage } from "@/pages/OurTeamPage";
-import { SignInPage } from "@/pages/SignInPage";
-import { TeamMemberPage } from "@/pages/TeamMemberPage";
-
+import { NotFoundPage } from '@/pages/NotFoundPage';
+import {  UsersPage } from '@/pages/UsersPage';
+import { SignInPage } from '@/pages/SignInPage';
+import {  UserDetailedPage } from '@/pages/UserDetailedPage';
 
 interface AppRouteProps {
     path: string;
@@ -19,18 +18,18 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.USERS]: '/users/', // + :id
-    [AppRoutes.SIGN_IN]: '/signin', 
-    [AppRoutes.NOT_FOUND]: '*', 
+    [AppRoutes.SIGN_IN]: '/signin',
+    [AppRoutes.NOT_FOUND]: '*',
 };
 
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
-        element: <OurTeamPage />,
+        element: <UsersPage />,
     },
     [AppRoutes.USERS]: {
         path: `${RoutePath.users}:id`,
-        element: <TeamMemberPage />,
+        element: <UserDetailedPage />,
     },
     [AppRoutes.SIGN_IN]: {
         path: RoutePath.sign_in,

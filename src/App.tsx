@@ -1,17 +1,20 @@
-import { OurTeamPage } from '@pages/OurTeamPage';
-import { TeamMemberPage } from '@pages/TeamMemberPage';
 import { Route, Routes } from 'react-router-dom';
-import {
-    RoutePath,
-    routeConfig,
-} from './shared/config/routeConfig/routeConfig';
-import { Suspense } from 'react';
-import { SignInPage } from './pages/SignInPage';
+import { routeConfig } from '@/shared/config/routeConfig/routeConfig';
+import { Suspense, useEffect } from 'react';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { profileActions } from './entities/AuthData';
+import { Loader } from './components/Loader/Loader';
 
 function App() {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(profileActions.initAuthData());
+    }, [dispatch]);
+
     return (
         <>
-            <Suspense fallback="Is loading">
+            <Suspense fallback={<Loader/>}>
                 <Routes>
                     {Object.values(routeConfig).map(({ path, element }) => (
                         <Route key={path} path={path} element={element} />

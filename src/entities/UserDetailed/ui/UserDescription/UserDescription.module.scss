@@ -1,0 +1,25 @@
+@import '../../../../../styles/variables.scss';
+
+.UserDescription {
+    gap: 129px;
+
+    .descriptionText {
+        max-width: 630px;
+        white-space: pre-line;
+    }
+
+    .link {
+        display: flex;
+        gap: 8px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    @media screen and (max-width: $mobileBreakPoint) {
+        padding: 0 16px 32px;
+        flex-direction: column-reverse;
+        gap: 32px;
+    }
+}
