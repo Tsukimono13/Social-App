@@ -4,7 +4,7 @@ import { SignInPage } from '@/pages/SignInPage';
 import {  UserDetailedPage } from '@/pages/UserDetailedPage';
 import { RouteProps } from 'react-router-dom';
 
-type AppRoutesProps = RouteProps & {
+export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
 }
 
