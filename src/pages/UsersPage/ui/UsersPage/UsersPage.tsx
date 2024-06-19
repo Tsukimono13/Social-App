@@ -1,19 +1,19 @@
 import { VStack } from '@/components/Stack';
 import cls from './UsersPage.module.scss';
+import { Text } from '@/components/Text';
+import { useAppSelector } from '@/shared/hooks/useAppSelectors';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { useCallback, useEffect } from 'react';
+import { NavbarUsersPage } from '../NavbarUsersPage/NavbarUsersPage';
 import {
+    UsersList,
+    fetchUsers,
     getUsers,
     getUsersError,
     getUsersHasMore,
     getUsersIsLoading,
     getUsersPage,
-} from '@/entities/Users/model/selectors/userListSelectors';
-import { Text } from '@/components/Text';
-import { useAppSelector } from '@/shared/hooks/useAppSelectors';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { useCallback, useEffect } from 'react';
-import { fetchUsers } from '@/entities/Users/model/services/fetchUsers/fetchUsers';
-import { NavbarUsersPage } from '../NavbarUsersPage/NavbarUsersPage';
-import { UsersList } from '@/entities/Users';
+} from '@/entities/Users';
 import { usersActions } from '@/entities/Users/model/slice/usersSlice';
 import { Loader } from '@/components/Loader/Loader';
 

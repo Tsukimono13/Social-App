@@ -4,6 +4,8 @@ export {
     getUsers,
     getUsersError,
     getUsersIsLoading,
+    getUsersHasMore,
+    getUsersPage
 } from './model/selectors/userListSelectors';
 export { fetchUsers } from './model/services/fetchUsers/fetchUsers';
 

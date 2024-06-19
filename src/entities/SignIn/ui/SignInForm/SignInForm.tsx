@@ -5,12 +5,16 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { VStack } from '@/components/Stack';
 import { Button, ThemeButton } from '@/components/Button';
 import { memo, useState } from 'react';
-import EyeOffIcon from '@assets/icons/eye-off.svg';
-import EyeOnIcon from '@assets/icons/eye-on.svg';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { signInByUsername } from '../../model/services/signInByUsername';
 import { useSelector } from 'react-redux';
-import { getSignInError, getSignInIsLoading } from '../../model/selectors/signInSelectors';
+import {
+    getSignInError,
+    getSignInIsLoading,
+} from '../../model/selectors/signInSelectors';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { PasswordVisibility } from '@/widgets/PasswordVisibility';
 
 interface IFormInput {
     username: string;
@@ -27,13 +31,10 @@ export const SignInForm = memo((props: SignInFormProps) => {
     const { className } = props;
     const [showPassword, setShowPassword] = useState(false);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
-    const isLoading = useSelector(getSignInIsLoading)
-    const error = useSelector(getSignInError)
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
+    const isLoading = useSelector(getSignInIsLoading);
+    const error = useSelector(getSignInError);
 
     const {
         register,
@@ -43,12 +44,11 @@ export const SignInForm = memo((props: SignInFormProps) => {
     } = useForm<IFormInput>();
 
     const onSubmit: SubmitHandler<IFormInput> = (data) => {
-        const { username, password } = data;
-        const payload = { username, password };
+        const { email, password } = data;
+        const payload = { email, password };
 
-        dispatch(signInByUsername(payload));
-
-        console.log(payload);
+        dispatch(signInByUsername(payload)).unwrap();
+        navigate(RoutePath.main);
     };
 
     const password = watch('password', '');
@@ -115,13 +115,11 @@ export const SignInForm = memo((props: SignInFormProps) => {
                             },
                         })}
                     />
-                    <Button
-                        onClick={togglePasswordVisibility}
+                    <PasswordVisibility
+                        showPassword={showPassword}
+                        setShowPassword={setShowPassword}
                         className={cls.passwordEye}
-                        theme={ThemeButton.CLEAR}
-                    >
-                        {showPassword ? <EyeOffIcon /> : <EyeOnIcon />}
-                    </Button>
+                    />
                     {errors.password && (
                         <Text
                             text={errors.password.message}
@@ -150,13 +148,11 @@ export const SignInForm = memo((props: SignInFormProps) => {
                                 value === password || 'Пароли не совпадают',
                         })}
                     />
-                    <Button
-                        onClick={togglePasswordVisibility}
+                    <PasswordVisibility
+                        showPassword={showPassword}
+                        setShowPassword={setShowPassword}
                         className={cls.passwordEye}
-                        theme={ThemeButton.CLEAR}
-                    >
-                        {showPassword ? <EyeOffIcon /> : <EyeOnIcon />}
-                    </Button>
+                    />
                     {errors.confirmPassword && (
                         <Text
                             text={errors.confirmPassword.message}

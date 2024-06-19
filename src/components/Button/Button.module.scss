@@ -3,9 +3,10 @@
 .Button {
     color: $secondaryColor;
     border-radius: 8px;
-    font-family: 'Roboto', sans-serif;
+    font-family: $mainFont;
     font-weight: 400;
     line-height: 21.79px;
+    font-size: 16px;
 }
 
 .outlined {
@@ -39,10 +40,6 @@
         background-color: $accentHoverColor;
         transition: .2s;
     }
-}
-
-.size_m {
-    font-size: 16px;
 }
 
 .disabled {

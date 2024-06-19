@@ -5,7 +5,7 @@ import { signInReducer } from '@/entities/SignIn/model/slice/signInSlice';
 import { profileReducer } from '@/entities/AuthData';
 import { $api } from '@/shared/api/api';
 import { AxiosInstance } from 'axios';
-import { NavigateOptions, To } from 'react-router-dom';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 
 export const store = configureStore({
@@ -14,15 +14,15 @@ export const store = configureStore({
         userDetailed: userDetailsReducer,
         signIn: signInReducer,
         authData: profileReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         thunk: {
             extraArgument: {
                 api: $api,
-                
             }
         }
-    })
+    }).concat(rtkApi.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;
@@ -30,5 +30,4 @@ export type AppDispatch = typeof store.dispatch;
 
 export interface ThunkExtraArg {
     api: AxiosInstance;
-    navigate: (to: To, options?: NavigateOptions) => void;
 }

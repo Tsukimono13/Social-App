@@ -6,7 +6,7 @@ const initialState: SignInSchema = {
     isLoading: false,
     error: undefined,
     password: '',
-    username: '',
+    email: '',
 };
 
 export const signInSlice = createSlice({

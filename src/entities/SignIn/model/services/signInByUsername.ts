@@ -5,7 +5,7 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage';
 import { ThunkExtraArg } from '@/shared/config/store/store';
 
 interface SignInByUsernameProps {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -15,13 +15,13 @@ export const signInByUsername = createAsyncThunk<
     { rejectValue: string, extra: ThunkExtraArg }
 >(
     'sign in/signInByUsername',
-    async ({ username, password }: SignInByUsernameProps, thunkApi) => {
+    async ({ email, password }: SignInByUsernameProps, thunkApi) => {
         const { rejectWithValue, extra, dispatch } = thunkApi;
         try {
             const response = await extra.api.post<UserData>(
                 '/login',
                 {
-                    username,
+                    email,
                     password,
                 },
             );

@@ -2,6 +2,11 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import {  UsersPage } from '@/pages/UsersPage';
 import { SignInPage } from '@/pages/SignInPage';
 import {  UserDetailedPage } from '@/pages/UserDetailedPage';
+import { RouteProps } from 'react-router-dom';
+
+type AppRoutesProps = RouteProps & {
+    authOnly?: boolean;
+}
 
 interface AppRouteProps {
     path: string;
@@ -22,14 +27,16 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.NOT_FOUND]: '*',
 };
 
-export const routeConfig: Record<AppRoutes, AppRouteProps> = {
+export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
         element: <UsersPage />,
+        authOnly: true,
     },
     [AppRoutes.USERS]: {
         path: `${RoutePath.users}:id`,
         element: <UserDetailedPage />,
+        authOnly: true,
     },
     [AppRoutes.SIGN_IN]: {
         path: RoutePath.sign_in,

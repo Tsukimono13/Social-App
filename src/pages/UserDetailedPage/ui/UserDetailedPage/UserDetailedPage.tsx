@@ -1,15 +1,20 @@
 import { VStack } from '@/components/Stack';
 import cls from './UserDetailedPage.module.scss';
-import { fetchUserById } from '@/entities/UserDetailed/model/services/fetchUserById/fetchUserById';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Text } from '@/components/Text';
-import { getUserDetailsData, getUserDetailsError, getUserDetailsIsLoading } from '@/entities/UserDetailed/model/selectors/userDetailsSelectors';
 import { NavbarUserDetailedPage } from '../NavbarUserDetailedPage/NavbarUserDetailedPage';
-import { UserDescription } from '@/entities/UserDetailed';
+import {
+    UserDescription,
+    fetchUserById,
+    getUserDetailsData,
+    getUserDetailsError,
+    getUserDetailsIsLoading,
+} from '@/entities/UserDetailed';
 import { Loader } from '@/components/Loader/Loader';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface UserDetailedPageProps {
     className?: string;
@@ -34,7 +39,11 @@ const UserDetailedPage = (props: UserDetailedPageProps) => {
     }
 
     if (isLoading) {
-        return <VStack align='center'><Loader /></VStack>;
+        return (
+            <VStack align="center">
+                <Loader />
+            </VStack>
+        );
     }
 
     if (error) {
@@ -46,12 +55,9 @@ const UserDetailedPage = (props: UserDetailedPageProps) => {
     }
 
     return (
-        <VStack align="center" max>
+        <VStack align="center" max className={classNames('', {}, [className])}>
             <NavbarUserDetailedPage user={user} />
-            <UserDescription
-                user={user}
-                className={cls.UserDetailedPage}
-            />
+            <UserDescription user={user} className={cls.UserDetailedPage} />
         </VStack>
     );
 };

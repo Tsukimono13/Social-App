@@ -6,6 +6,7 @@ import { Button, ThemeButton } from '@/components/Button';
 import MoreArrowIcon from '@assets/icons/seeMore.svg';
 import { User } from '../../model/types/user';
 import { Loader } from '@/components/Loader/Loader';
+import { memo } from 'react';
 
 interface UsersListProps {
     className?: string;
@@ -16,9 +17,8 @@ interface UsersListProps {
     hasMore: boolean;
 }
 
-export const UsersList = (props: UsersListProps) => {
-    const { className, users, error, isLoading, onLoadNextPage, hasMore } =
-        props;
+export const UsersList = memo((props: UsersListProps) => {
+    const { className, users, isLoading, onLoadNextPage, hasMore } = props;
 
     if (isLoading) {
         return (
@@ -48,4 +48,4 @@ export const UsersList = (props: UsersListProps) => {
             </Button>
         </VStack>
     );
-};
+});
