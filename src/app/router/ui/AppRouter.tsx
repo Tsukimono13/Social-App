@@ -1,7 +1,7 @@
 import { Loader } from '@/components/Loader/Loader';
 import { VStack } from '@/components/Stack';
 import { AppRoutesProps, routeConfig } from '@/shared/config/routeConfig/routeConfig';
-import React, { memo, Suspense, useCallback } from 'react';
+import { memo, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { RequireAuth } from './RequireAuth';
 

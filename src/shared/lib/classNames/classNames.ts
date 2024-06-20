@@ -9,6 +9,7 @@ export function classNames(
         cls,
         ...additional.filter(Boolean),
         ...Object.entries(mods)
+        // @ts-expect-error need to use
             .filter(([className, value]) => Boolean(value))
             .map(([className]) => className),
     ].join(' ');

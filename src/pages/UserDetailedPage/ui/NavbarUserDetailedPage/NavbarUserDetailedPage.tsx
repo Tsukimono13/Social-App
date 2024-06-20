@@ -1,7 +1,6 @@
 import { Navbar } from '@/widgets/Navbar';
 import { HStack, VStack } from '@/components/Stack';
 import { Text, TextSize, TextTheme } from '@/components/Text';
-import Avatar from '@assets/img/avatarBig.png';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './NavbarUserDetailedPage.module.scss';
 import { SignOutButton } from '@/widgets/SignOutButton';

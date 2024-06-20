@@ -8,11 +8,6 @@ export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
 }
 
-interface AppRouteProps {
-    path: string;
-    element: JSX.Element;
-}
-
 export enum AppRoutes {
     MAIN = 'main',
     USERS = 'users',

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { User } from '../../types/user';
-import { ThunkExtraArg  } from '@/shared/config/store/store';
+import { RootState, ThunkExtraArg  } from '@/shared/config/store/store';
 import { getUsersLimit } from '../../selectors/userListSelectors';
 
 interface FetchUsersProps {
@@ -10,7 +10,7 @@ interface FetchUsersProps {
 export const fetchUsers = createAsyncThunk<
     User[],
     FetchUsersProps,
-    { rejectValue: string; extra: ThunkExtraArg }
+    { rejectValue: string; extra: ThunkExtraArg; state: RootState }
 >('users/fetchUsers', async (props, thunkApi) => {
     const { rejectWithValue, extra, getState} = thunkApi;
     const { page = 1} = props;
